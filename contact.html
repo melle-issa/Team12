@@ -14,7 +14,23 @@
     }
 
     main {
+      flex-grow: 1;
       padding: 20px;
+    }
+
+    header {
+      background-color: #4caf50;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      padding: 0 20px;
+      text-align: center;
     }
 
     footer {
@@ -30,22 +46,59 @@
       height: 60px;
     }
 
-    footer a {
+    footer a, header a {
       color: #fff;
       text-decoration: none;
     }
 
-    #icon1, #icon2, #icon3 {
+    #icon1, #icon2, #icon3, #settingsIcon {
       width: 24px;
       height: 24px;
+    }
+
+    #settingsLink {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      padding-right: 40px; 
+    }
+
+    #settingsDropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 60px;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+    }
+
+    header:hover #settingsDropdown {
+      display: flex;
+    }
+
+    #settingsDropdown a{
+      margin-bottom: 8px; 
     }
   </style>
 </head>
 <body>
+    <header>
+        <div>CampusSafe</div>
+        <a href="#" id="settingsLink">
+          <img id="settingsIcon" src="settings.png" alt="settings">
+          <div id="settingsDropdown">
+            <a href="settings.html">Settings</a>
+            <a href="profile.html">Profile</a>
+            <a href="index.html">Logout</a>
+          </div>
+        </a>
+      </header>
   <main>
 
-    
-    
   </main>
 
   
