@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Profile</title>
-        <style>
-            
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-    <body>
-        <!-- remove this, I just included it so you can know which page this is-->
-        <h1>Profile</h1>
+        h1 {
+            color: #45a049;
+        }
 
-    </body>
+        #profile-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #user-info {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User Profile</h1>
+
+    <div id="profile-container">
+        <div id="user-info">
+            <label for="username">Username:</label>
+            <span id="username">JohnDoe</span>
+        </div>
+
+        <div id="user-info">
+            <label for="email">Email:</label>
+            <span id="email">john.doe@example.com</span>
+        </div>
+
+        <!-- Add more user information fields as needed -->
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // You can include a script to handle logout or other functionality
+        function logout() {
+            // Add your logout logic here
+            alert("Logout logic goes here");
+        }
+    </script>
+</body>
 </html>
