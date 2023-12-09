@@ -16,6 +16,7 @@
     main {
       flex-grow: 1;
       padding: 20px;
+      padding-top: 80px;
     }
 
     header {
@@ -83,6 +84,22 @@
     #settingsDropdown a{
       margin-bottom: 8px; 
     }
+
+    .bubble-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .bubble {
+      width: 500px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -98,7 +115,23 @@
         </a>
       </header>
   <main>
+    <div class="bubble-container">
+      <div class="bubble"> 
+        <a href="https://wrc.ucr.edu/?_gl=1*14jl2lt*_ga*MjA0OTEwMDAxMy4xNjk2NzA2ODQz*_ga_S8BZQKWST2*MTcwMjA4Njc4My4xOS4xLjE3MDIwODY5NjcuMC4wLjA.*_ga_Z1RGSBHBF7*MTcwMjA4Njc3OC4xOS4xLjE3MDIwODY5NjcuMC4wLjA." 
+        target="_blank" rel="noopener noreferrer">
+        <span>UCR WRC</span>
+        </a>
+      </div>
 
+      <!--SAMPLE CODE-->
+      <div class="bubble"> 
+        <a href="insert link here" 
+        target="_blank" rel="noopener noreferrer">
+        <span>Insert Link Title Here</span>
+        </a>
+      </div>
+
+    </div>
   </main>
 
   
