@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import './Header.css';
 
 const Header = () => {
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef();
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header>
       <div>CampusSafe</div>
-      <div id="settingsLink">
+      <div id="settingsLink" onClick={toggleDropdown}>
         <img id="settingsIcon" src="assets/settings.png" alt="settings" />
-        <div id="settingsDropdown">
-          <Link to="/profile">Profile</Link>
-          <Link to="/settings">Settings</Link>
-          <Link to="/logout">Logout</Link>
-        </div>
+        {isDropdownVisible && (
+          <div id="settingsDropdown" ref={dropdownRef}>
+            <Link to="/profile">Profile</Link>
+            <Link to="/settings">Settings</Link>
+            <Link to="/">Logout</Link>
+          </div>
+        )}
       </div>
     </header>
   );

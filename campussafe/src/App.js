@@ -7,19 +7,21 @@ import InfoComponent from './components/InfoComponent';
 import SettingsComponent from './components/SettingsComponent';
 import ProfileComponent from './components/ProfileComponent';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LoginForm />} />
-        {/* Wrap other routes with a layout that includes the header */}
+        {/* Wrap other routes with a layout that includes the header and footer */}
         <Route
           path="/map"
           element={
             <>
               <Header />
               <MapComponent />
+              <Footer />
             </>
           }
         />
@@ -29,6 +31,7 @@ function App() {
             <>
               <Header />
               <ContactComponent />
+              <Footer />
             </>
           }
         />
@@ -38,6 +41,7 @@ function App() {
             <>
               <Header />
               <InfoComponent />
+              <Footer />
             </>
           }
         />
@@ -47,6 +51,7 @@ function App() {
             <>
               <Header />
               <SettingsComponent />
+              <Footer />
             </>
           }
         />
@@ -56,6 +61,7 @@ function App() {
             <>
               <Header />
               <ProfileComponent />
+              <Footer />
             </>
           }
         />
