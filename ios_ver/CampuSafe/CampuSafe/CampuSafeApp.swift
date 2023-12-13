@@ -12,7 +12,6 @@ struct CampuSafeApp: App {
     var body: some Scene {
         WindowGroup {
             WelcomeView()
-            MainView()
         }
     }
 }

@@ -10,7 +10,7 @@ struct MainView: View {
         NavigationStack {
             VStack {
 
-                Spacer()
+                //Spacer()
 
 
                 TabView {
@@ -33,10 +33,11 @@ struct MainView: View {
                             Text("Information")
                         }
                 }
-                .frame(height: 700) 
+                //.frame(height: 700)
             }
             .navigationTitle("CampuSafe")
             .navigationBarItems(trailing: MenuButton(showingSettings: $showingSettings, showingProfile: $showingProfile, showingLogout: $showingLogoutConfirmation))
+            .navigationBarBackButtonHidden(true)
             .sheet(isPresented: $showingSettings) {
                 SettingView()
             }
@@ -53,7 +54,7 @@ struct MainView: View {
                 WelcomeView()
             }
         }
-        .navigationBarBackButtonHidden(true)  
+          
     }
 }
 
