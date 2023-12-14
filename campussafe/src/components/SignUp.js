@@ -1,5 +1,4 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from "../firebase";
 import { useNavigate, Link } from 'react-router-dom';
 import React, { useState } from 'react';
@@ -19,20 +18,15 @@ export const SignUp = () => {
       return;
     }
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // Store additional user data in Firestore with UID as document ID
-      const userDocRef = await addDoc(collection(db, 'users'), {
-        email,
-        userName: username,
-        uid: user.uid,
-        isAdmin: false,
+      await createUserWithEmailAndPassword(auth, email, password).then(cred => {
+        return db.collection('users').doc(cred.user.uid).set({
+          email,
+          userName: username,
+          isAdmin: false,
+        })
       });
 
-      console.log('Account successfully creeated with ID:', userDocRef.id);
-
-      navigate('/map');
+      navigate('/');
     } catch (error) {
       setError('Error signing up: ' + error.message);
     }

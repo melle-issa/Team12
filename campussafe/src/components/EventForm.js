@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { auth, db } from "../firebase"; // Assuming 'db' is your Firestore instance
 import { useNavigate } from 'react-router-dom';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import firebase from 'firebase/app';
+import { collection, addDoc } from 'firebase/firestore';
 import './LoginForm.css';
 
 export const LoginForm = () => {

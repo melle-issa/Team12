@@ -15,7 +15,7 @@ const ProfileComponent = () => {
 
         if (currentUser) {
           // Get user data from Firestore
-          const userDocRef = doc(db, 'users', currentUser.uid);
+          const userDocRef = await doc(db, 'users', "crVx7mVIUpeuQUgNfZev");
           const userDocSnapshot = await getDoc(userDocRef);
 
           if (userDocSnapshot.exists()) {
@@ -40,7 +40,7 @@ const ProfileComponent = () => {
           <>
             <div className="user-info">
               <label htmlFor="username">Username:</label>
-              <span id="username">{user.username}</span>
+              <span id="username">{user.userName}</span>
             </div>
 
             <div className="user-info">
