@@ -1,11 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
 import LoginForm from './components/LoginForm';
 import MapComponent from './components/MapComponent';
 import ContactComponent from './components/ContactComponent';
 import InfoComponent from './components/InfoComponent';
 import SettingsComponent from './components/SettingsComponent';
 import ProfileComponent from './components/ProfileComponent';
+import SignUp from './components/SignUp';
+import EventForm from './components/EventForm'; // Import EventForm component
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -61,6 +65,24 @@ function App() {
             <>
               <Header />
               <ProfileComponent />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <SignUp />
+            </>
+          }
+        />
+        <Route
+          path="/event-form"
+          element={
+            <>
+              <Header />
+              <EventForm />
               <Footer />
             </>
           }
