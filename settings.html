@@ -1,17 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Settings</title>
-        <style>
-            
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
 
-    <body>
-        <!-- remove this, I just included it so you can know which page this is-->
-        <h1>Settings</h1>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            position: relative;
+        }
 
-    </body>
+        main {
+            flex-grow: 1;
+            padding: 60px 20px;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4caf50;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+        }
+
+        footer a,
+        header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #icon1,
+        #icon2,
+        #icon3,
+        #settingsIcon {
+            width: 24px;
+            height: 24px;
+        }
+
+        #settingsLink {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            padding-right: 40px;
+        }
+
+        #settingsDropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+        }
+
+        header:hover #settingsDropdown {
+            display: flex;
+        }
+
+        #settingsDropdown a {
+            margin-bottom: 8px;
+        }
+
+
+
+        h1 {
+            text-align: center;
+            color: #4caf50;
+        }
+
+        .settings-section {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"],
+        input[type="checkbox"] {
+            width: calc(100% - 18px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .settings-section h2 {
+            color: #4caf50;
+        }
+
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            z-index: -1;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-switch .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .toggle-switch .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .slider {
+            background-color: #4caf50;
+        }
+
+        .toggle-switch input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .green-bubble {
+            border: 2px solid #4caf50; /* Green border */
+            padding: 10px;
+            border-radius: 5px;
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space items evenly */
+            align-items: center; /* Align items vertically */
+        }
+
+        .green-bubble .toggle-content {
+            flex: 1; /* Occupy remaining space */
+        }
+
+        .green-bubble h2,
+        .green-bubble p {
+            color: #000; /* Black text color */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Hide overflowed text */
+            text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .green-bubble .toggle-switch {
+            flex-shrink: 0; /* Prevent toggle switch from shrinking */
+            margin-left: 20px; /* Add space between text and switch */
+        }
+
+        #saveChangesButton {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #saveChangesButton:hover {
+            background-color: #45a049; /* Darker shade on hover */
+        }
+
+        .bubble-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-left: 20px; /* Adjust the margin for space between h2 and bubble selection */
+        }
+
+        .bubble {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #ccc;
+            color: #000;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .bubble.selected {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .bubble:hover {
+            background-color: #eee;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+        .privacy-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .privacy-option p {
+            margin: 0;
+        }
+
+        .alert-types {
+            margin-top: 10px;
+        }
+
+        .alert-type {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .safety-features {
+            margin-top: 10px;
+        }
+
+        .safety-feature {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>CampusSafe</div>
+        <a href="#" id="settingsLink">
+            <img id="settingsIcon" src="assets/settings.png" alt="settings">
+            <div id="settingsDropdown">
+                <a href="settings.html">Settings</a>
+                <a href="profile.html">Profile</a>
+                <a href="index.html">Logout</a>
+            </div>
+        </a>
+    </header>
+    <main>
+
+        <div class="settings-section">
+            <h2>Profile Settings</h2>
+            <label for="profilePicture">Profile Picture</label>
+            <input type="file" id="profilePicture">
+
+            <label for="name">Name</label>
+            <input type="text" id="name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password">
+
+            <button id="saveChangesButton">Save Changes</button>
+        </div>
+
+        <div class="settings-section">
+            <div class="green-bubble">
+                <div class="toggle-content">
+                    <div class="alert-types">
+                        <div class="alert-type">
+                            <div class="toggle-content">
+                                <h2>Notification Preferences</h2>
+                                <p>Receive Emergency Alerts</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emergencyAlerts">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="alert-type">
+                            <label for="pushNotifications">Push Notifications</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="pushNotifications">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="alert-type">
+                            <label for="smsNotifications">SMS</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="smsNotifications">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="alert-type">
+                            <label for="emailNotifications">Email</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <hr class="divider" style="border: 1px solid #4caf50;">
+                    <div class="general-alerts">
+                        <div class="alert-type">
+                            <label for="updates">Receive General Notifications</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="updates">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="alert-type">
+                            <label for="updates">Updates</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="updates">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="alert-type">
+                            <label for="news">News</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="news">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="alert-type">
+                            <label for="announcements">Announcements</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="announcements">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <div class="green-bubble">
+                <div class="toggle-content">
+                    <div class="safety-feature">
+                        <div class="toggle-content">
+                            <h2>Safety Features</h2>
+                            <p>Location Tracking</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="locationTracking">
+                            <span class="slider"></span>
+                        </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="safety-feature">
+                            <p>Panic Button</p>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="panicButton">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <hr class="divider">
+                        <div class="safety-feature">
+                            <p>Weather Alerts</p>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="weatherAlerts">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="settings-section">
+            <div class="green-bubble">
+                <div class="toggle-content">
+                    <div class="privacy-option">
+                        <div class="toggle-content">
+                            <h2>Privacy Settings</h2>
+                            <p>Hide Online Status</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="hideOnlineStatus">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <hr class="divider">
+                    <div class="privacy-option">
+                        <p>Control who can view your location</p>
+                        <div id="visibilityControl" class="bubble-selection">
+                            <div class="bubble">Friends</div>
+                            <div class="bubble">Parents</div>
+                            <div class="bubble">Administrators</div>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div class="privacy-option">
+                        <p>Medical Information Access</p>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="medicalInfoAccess">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <hr class="divider">
+                    <div class="privacy-option">
+                        <p>Share data for safety measures and research</p>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dataSharingCheckbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <a href="map.html"><img id="icon1" src="assets/location.png" alt="map"></a>
+        <a href="contact.html"><img id="icon2" src="assets/calling.png" alt="calling"></a>
+        <a href="information.html"><img id="icon3" src="assets/info.png" alt="information"></a>
+    </footer>
+</body>
 </html>
