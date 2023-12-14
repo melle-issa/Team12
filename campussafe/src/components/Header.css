@@ -1,0 +1,22 @@
+#settingsLink {
+    position: relative;
+  }
+  
+  #settingsDropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+  }
+  
+  #settingsLink:hover #settingsDropdown {
+    display: flex;
+    flex-direction: column;
+  }
+  
