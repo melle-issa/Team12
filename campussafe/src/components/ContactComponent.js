@@ -5,18 +5,6 @@ import './ContactComponent.css';
 const ContactComponent = () => {
   return (
     <div>
-      <header>
-        <div>CampusSafe</div>
-        <a href="#" id="settingsLink">
-          <img id="settingsIcon" src="assets/settings.png" alt="settings" />
-          <div id="settingsDropdown">
-            <a href="settings.html">Settings</a>
-            <a href="profile.html">Profile</a>
-            <a href="index.html">Logout</a>
-          </div>
-        </a>
-      </header>
-
       <main>
         <br />
         <br />
@@ -52,18 +40,6 @@ const ContactComponent = () => {
           </div>
         </div>
       </main>
-
-      <footer>
-        <a href="map.html">
-          <img id="icon1" src="assets/location.png" alt="map" />
-        </a>
-        <a href="contact.html">
-          <img id="icon2" src="assets/calling.png" alt="calling" />
-        </a>
-        <a href="information.html">
-          <img id="icon3" src="assets/info.png" alt="information" />
-        </a>
-      </footer>
     </div>
   );
 };
